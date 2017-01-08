@@ -26,9 +26,12 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @group.update(group_params)
+    if @group.update(group_params)
     flash[:notice] = "Update success"
       redirect_to groups_path
+    else
+      render :edit
+    end
   end
 
   def destroy
